@@ -1,5 +1,7 @@
-[![GitHub Release](https://img.shields.io/github/release/lopestom/android_device_motorola_paros.svg?logo=github)](https://github.com/lopestom/android_device_motorola_paros/releases/tag/12856591058) [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html) [![download](https://img.shields.io/github/downloads/lopestom/android_device_motorola_paros/total)](https://github.com/lopestom/android_device_motorola_paros/releases/download/12856591058/boot-Power_Armor_18-20250119.img)
+[![GitHub Release](https://img.shields.io/github/release/lopestom/android_device_motorola_paros.svg?logo=github)](https://github.com/lopestom/android_device_motorola_paros/releases) [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html) [![download](https://img.shields.io/github/downloads/lopestom/android_device_motorola_paros/total)](https://github.com/lopestom/lopestom/android_device_motorola_paros/releases/download/Moto_G75/download/Moto_G75/recovery2-MOTO_G75-lopestom.zip)
 --------------------------------------------------------
+
+
 ## TWRP device tree for Motorola Moto G75 aka paros | sorap
 
 > [!IMPORTANT]
@@ -84,4 +86,5 @@ lunch twrp_paros_cn-eng
 mka recoveryimage -j$(nproc --all)
 ```
 
-**Repository Views** ![Views](https://profile-counter.glitch.me/android_device_motorola_paros/count.svg)
+**Repository Views**
+![Views](https://profile-counter.glitch.me/android_device_motorola_paros/count.svg)
