@@ -5,29 +5,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/motorola/boston
-DEVICE_PREBUILT_PATH := device/motorola/boston/prebuilt
-
-# A-Team Maintainer Info
-TW_MAINTAINER := PizzaG
-TW_DEVICE_VERSION := 0.1
-RECOVERY_VARIANT := TWRP_12.1
-
-# A/B
-AB_OTA_UPDATER := true
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
-AB_OTA_PARTITIONS += \
-    boot \
-    dtbo \
-    product \
-    system \
-    system_ext \
-    recovery \
-    vbmeta \
-    vbmeta_system \
-    vendor \
-    vendor_dlkm \
-    vendor_boot
+DEVICE_PATH := device/motorola/paros
+DEVICE_PREBUILT_PATH := device/motorola/paros/prebuilt
 
 # Architecture
 TARGET_ARCH := arm64
@@ -47,7 +26,7 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 TARGET_SUPPORTS_64_BIT_APPS := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := parrot
+TARGET_BOOTLOADER_BOARD_NAME := paros
 TARGET_NO_BOOTLOADER := false
 TARGET_USES_UEFI := true
 TARGET_USES_REMOTEPROC := true
@@ -60,18 +39,13 @@ BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 RELAX_USES_LIBRARY_CHECK := true
-TARGET_DEVICE_ALT += boston_g boston XT2419
-
-# Display
-TARGET_SCREEN_DENSITY := 403
-DEVICE_RESOLUTION := 1080x2400
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
+TARGET_DEVICE_ALT += paros sorap paros_cn XT2437 XT2437-1 XT2437-2 XT2437-3 XT2437-4
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE += printk.devkmsg=on firmware_class.path=/data/vendor/param/firmware
+#BOARD_KERNEL_CMDLINE += twrpfastboot=1
 BOARD_BOOTCONFIG += \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
@@ -79,24 +53,19 @@ BOARD_BOOTCONFIG += \
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
-#BOARD_MKBOOTIMG_ARGS += --dtb $(DEVICE_PREBUILT_PATH)/dtb.img
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-#BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 BOARD_RAMDISK_USE_LZ4 := true
 
 TARGET_PREBUILT_KERNEL := $(DEVICE_PREBUILT_PATH)/kernel
-#TARGET_PREBUILT_DTB := $(DEVICE_PREBUILT_PATH)/dtb.img
-
-# Copy DTB
-#PRODUCT_COPY_FILES += \
-#        $(TARGET_PREBUILT_DTB):dtb.img
-
 TARGET_FORCE_PREBUILT_KERNEL := true
 BOARD_USES_FULL_RECOVERY_IMAGE := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
+
+# SAR
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -136,6 +105,8 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 # Platform
 TARGET_BOARD_PLATFORM := parrot
 QCOM_BOARD_PLATFORMS += parrot
+# Add by lopestom - for test
+#BOARD_USES_QCOM_HARDWARE := true
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -148,6 +119,8 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 RECOVERY_SDCARD_ON_DATA := true
+# Add by lopestom
+BOARD_SUPPRESS_SECURE_ERASE := true
 
 # TWRP Crypto
 TW_INCLUDE_CRYPTO := true
@@ -155,30 +128,58 @@ TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 TW_USE_FSCRYPT_POLICY := 2
+TW_BACKUP_EXCLUSIONS := /data/fonts
+# Add by lopestom
+#TW_FIX_DECRYPTION_ON_DATA_MEDIA := true
+
+# Display
+TW_THEME := portrait_hdpi
+TARGET_SCREEN_DENSITY := 387 # 403
+DEVICE_RESOLUTION := 1080x2388 # 2400
+TARGET_SCREEN_HEIGHT := 2388
+TARGET_SCREEN_WIDTH := 1080
+
+TW_MAX_BRIGHTNESS := 3515
+TW_DEFAULT_BRIGHTNESS := 1024
+TW_FRAMERATE := 120 #60
 
 # TWRP Configuration
-TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_LIBRESETPROP := true
 TW_INCLUDE_NTFS_3G := true
-TW_BACKUP_EXCLUSIONS := /data/fonts
+TW_NO_USB_STORAGE := false
 TW_NO_SCREEN_BLANK := true
-TW_MAX_BRIGHTNESS := 3515
-TW_DEFAULT_BRIGHTNESS := 1024
-TW_FRAMERATE := 60
 TW_HAS_EDL_MODE := true
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone39/temp
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+TW_INCLUDE_PYTHON := true
+TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
+
+# Vibrator - haptic
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
-TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
-TW_NO_USB_STORAGE := false
+
+# FastbootD
 TW_INCLUDE_FASTBOOTD := true
+# Tools
+TW_INCLUDE_LPDUMP := true
+TW_INCLUDE_LPTOOLS := true
 TW_INCLUDE_PYTHON := true
+TW_INCLUDE_NANO := true
+TW_INCLUDE_BASH := true
+
+# Add by lopestom
+# Fix fastboot reboot
+#TW_NO_FASTBOOT_BOOT := true
+
+# Add by lopestom
+# Debug flags
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -192,3 +193,14 @@ BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
+
+# A-Team Maintainer Info
+TW_MAINTAINER := PizzaG
+TW_DEVICE_VERSION := 0.2-4pda
+RECOVERY_VARIANT := TWRP_12.1
+
+
+# # Add by lopestom For tests
+# For the love of all that is holy, please do not include this in your ROM unless you really want TWRP to not work correctly!
+#BOARD_KERNEL_CMDLINE += androidboot.fastboot=1
+#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive

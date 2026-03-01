@@ -1,12 +1,12 @@
-Motorola Moto G Stylus 5G 2024
+Motorola Moto G75 aka paros | sorap
 
+https://www.gsmarena.com/motorola_moto_g75-13372.php
 
 # Building
 ```bash
 source build/envsetup.sh
-lunch twrp_boston-eng
+lunch twrp_paros_cn-eng
 mka recoveryimage -j$(nproc --all)
 ```
 
-**Copyright (C) 2024 A-Team Digital Solutions**<br />
-**Tree template from TeamWin, some file from VanFirmwareDumps**
+

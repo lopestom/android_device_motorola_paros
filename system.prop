@@ -1,9 +1,12 @@
+####### generate by lopestom #######
 # Product informations
-ro.product.board=parrot
-ro.board.platform=parrot
-
-# ADB
-ro.adb.secure=0
+#ro.product.first_api_level=34
+#ro.board.first_api_level=31
+#ro.board.api_level=31
+#ro.vendor.build.security_patch=2025-04-01
+#ro.product.board=paros
+#ro.board.platform=parrot
+#
 
 # Battery Property
 ro.charger.enable_suspend=1
@@ -18,15 +21,9 @@ ro.crypto.volume.metadata.method=dm-default-key
 
 # MTP
 vendor.usb.use_ffs_mtp=1
+vendor.usb.diag.func.name=ffs
 
 # PASSTHROUGH
 persist.sys.isUsbOtgEnabled=true
 sys.usb.controller=a600000.dwc3
-
-# Storage
-external_storage.projid.enabled=1
-external_storage.casefold.enabled=1
-external_storage.sdcardfs.enabled=0
-
-# Virtual AB device
-ro.virtual_ab.enabled=true
+####### generate by lopestom #######

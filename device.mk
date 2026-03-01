@@ -16,6 +16,21 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 SHIPPING_API_LEVEL := 31
 
 # A/B
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    product \
+    system \
+    system_ext \
+    recovery \
+    vbmeta \
+    vbmeta_system \
+    vendor \
+    vendor_dlkm \
+    vendor_boot
+
+# A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
@@ -33,6 +48,8 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl-qti \
     android.hardware.boot@1.2-impl-qti.recovery \
     android.hardware.boot@1.2-service
+# For tests
+#    bootctrl.$(PRODUCT_DEVICE).recovery
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
@@ -62,7 +79,8 @@ PRODUCT_PACKAGES += \
 # FastbootD
 PRODUCT_PACKAGES += \
     fastbootd \
-    android.hardware.fastboot@1.1-impl-mock
+    android.hardware.fastboot@1.0-impl-mock
+#    android.hardware.fastboot@1.1-impl-mock
 
 # HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
