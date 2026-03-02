@@ -46,7 +46,7 @@ Status: booted??
 recovery-paros-2026mmdd.img => Working?? Not working?
   - [x] Working
   - [x]  CPU/temperature correct
-  - [x]  Vibrator module - not work - not need
+  - [x]  Vibrator module
 
 </p>
 </details>
