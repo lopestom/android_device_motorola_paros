@@ -12,6 +12,12 @@
 ### Firmware version:
 
 Android 15
+```
+ro.boot.hardware.sku=XT2437-4
+ro.boot.bootloader=MBM-3.0-paros_cn-2b418ba279a-250424-SUQ32HV-V1-ST21.1-be7a3
+ro.bootimage.build.fingerprint=Android/gsi_arm64/generic_arm64:12/SGR1.250917.001.A1/14444124:user/release-keys
+ro.odm.build.fingerprint=motorola/paros_cn/paros:12/U4UQ34.50-43-1/ee612:user/release-keys
+```
 
 ## Device
 
