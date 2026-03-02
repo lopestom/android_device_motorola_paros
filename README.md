@@ -61,7 +61,8 @@ recovery-paros-2026mmdd.img => Working?? Not working?
 #### Big thanks to:
 
 - [avv8011 from 4pda](https://4pda.to/forum/index.php?showuser=6860669) for testing TWRP file
-- @PizzaG for initial device tree motorola_boston
+- @PizzaG for initial motorola_boston device tree
+- @Katziiii for more options with paros-twrp device tree 
 - [TeamWin](https://github.com/TeamWin) for TWRP SC.
   * TWRP version 3.7.1_12
 
